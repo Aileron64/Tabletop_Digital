@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
-var cardImgs;
+
+var cards;
 
 export class Hand extends Component
 {
@@ -14,7 +15,7 @@ export class Hand extends Component
             loading: true
         };
 
-        cardImgs = this.props.cardImgs;
+        cards = this.props.cards;
     }
 
     componentDidMount()
@@ -46,14 +47,14 @@ export class Hand extends Component
     {
         return (
             <button key={props.key} className="hand" onClick={(e) => this.cardClick(props.key, e)}>
-                <img src={props.img} alt="card" />
+                {props.card}
             </button>
         );
     }
 
     render()
     {
-        let cards = [];
+        let cardlist = [];
 
         if (!this.state.loading)
         {
@@ -62,10 +63,10 @@ export class Hand extends Component
                 var number = this.state.cards[i].number;
                 var color = this.state.cards[i].color;
 
-                cards.push(this.renderCard(
+                cardlist.push(this.renderCard(
                     {
                         key: i,
-                        img: cardImgs[color][number]
+                        card: cards[color][number]
                     }));
             }
         }
@@ -74,7 +75,7 @@ export class Hand extends Component
             <div>
                 <button id="draw-card" onClick={(e) => this.drawCard(e)}>Draw Card</button>
                 <br />
-                {cards}
+                {cardlist}
             </div>
         );
     }

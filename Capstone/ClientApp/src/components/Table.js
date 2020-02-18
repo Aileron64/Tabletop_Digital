@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 
-var cardImgs;
+var cards;
 
 export class Table extends Component
 {
@@ -18,7 +18,7 @@ export class Table extends Component
             loading: true
         };
 
-        cardImgs = this.props.cardImgs;
+        cards = this.props.cards;
     }
 
     componentDidMount()
@@ -48,7 +48,7 @@ export class Table extends Component
                     <h3>{this.state.statusText}</h3>
                     <p>{this.state.subText}</p>
                 </div>
-                <img src={cardImgs[this.state.topCard.color][this.state.topCard.number]} alt="card" />
+                {cards[this.state.topCard.color][this.state.topCard.number]}
             </div>
         ); 
     }

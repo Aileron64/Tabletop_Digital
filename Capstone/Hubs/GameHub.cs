@@ -89,8 +89,7 @@ namespace Capstone
                 try
                 {
                     Random rand = new Random();
-                    string[] nameArray = File.ReadAllLines("RandomNames.txt");
-                    name = nameArray[rand.Next(nameArray.Length)];
+                    name = NameList.NameArray[rand.Next(NameList.NameArray.Length)];
                 }
                 catch
                 {

@@ -9,17 +9,17 @@ const signalR = require('@aspnet/signalr');
 
 const COLORS =
 {
-    0: "blue",
-    1: "red",
-    2: "green",
-    3: "yellow"
+    0: "#000099", // blue
+    1: "#990000", // red
+    2: "#006600", // green
+    3: "#cc9900" // yellow
 };
 
-var cardImgs = new Array(4);
-cardImgs[0] = [];
-cardImgs[1] = [];
-cardImgs[2] = [];
-cardImgs[3] = [];
+var cards = new Array(4);
+cards[0] = [];
+cards[1] = [];
+cards[2] = [];
+cards[3] = [];
 
 export class Game extends Component
 {
@@ -59,18 +59,24 @@ export class Game extends Component
 
     loadAssets()
     {
-        //Preload card image files
+        //Preload card 
         for (let i = 0; i < 4; i++)
         {
             for (let n = 0; n < 13; n++)
-            {      
-                cardImgs[i][n] = new Image();
-                cardImgs[i][n] = "images/cards/" + COLORS[i] + "_" + n + ".png";
+            {
+                cards[i][n] =
+                    <div className="card" style={{ backgroundColor: COLORS[i] }}>
+                        <span className="card-number">{n}</span>
+                    </div>;
             }
 
-            cardImgs[i][10] = "images/cards/" + COLORS[i] + "_picker" + ".png";
-            cardImgs[i][11] = "images/cards/" + COLORS[i] + "_reverse" + ".png";
-            cardImgs[i][12] = "images/cards/" + COLORS[i] + "_skip" + ".png";
+            for (let n = 10; n < 13; n++)
+            {
+                cards[i][n] =
+                    <div className="card" style={{ backgroundColor: COLORS[i] }}>                    
+                       <span className="card-icon">{n - 10}</span>   
+                    </div>;
+            }
         }
     }
 
@@ -89,8 +95,8 @@ export class Game extends Component
         return (
             <div>
                 <div className="left">
-                    <Table connection={this.state.connection} cardImgs={cardImgs} />
-                    <Hand connection={this.state.connection} cardImgs={cardImgs} />
+                    <Table connection={this.state.connection} cards={cards} />
+                    <Hand connection={this.state.connection} cards={cards}/>
                 </div>
 
                 <div className="right">

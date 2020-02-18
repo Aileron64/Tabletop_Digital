@@ -14,7 +14,7 @@ export default class App extends Component
         return (
             <Layout>
                 <Route exact path='/' component={Game} />
-                <Route exact path='/debug' component={DebugLog} />
+                <Route path='/debug' component={DebugLog} />
             </Layout>
         );
     }
