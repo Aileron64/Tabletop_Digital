@@ -24,7 +24,7 @@ namespace Capstone
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            GM.RemovePlayer(Context.ConnectionId);
+            GM.Games["GAME_CODE"].RemovePlayer(Context.ConnectionId);
             UpdatePlayerList();
             return base.OnDisconnectedAsync(exception);
         }
@@ -33,17 +33,17 @@ namespace Capstone
 
         public async void UpdateTable()
         {
-            await Clients.All.SendAsync("UpdateTable", GM.Table);
+            await Clients.All.SendAsync("UpdateTable", GM.Games["GAME_CODE"].Table);
         }
 
         public async void UpdateHand()
         {
-            await Clients.Caller.SendAsync("UpdateHand", GM.PlayerCards[Context.ConnectionId]);
+            await Clients.Caller.SendAsync("UpdateHand", GM.Games["GAME_CODE"].PlayerCards[Context.ConnectionId]);
         }
 
         public async void UpdateOtherHand(string connectionId)
         {
-            await Clients.Client(connectionId).SendAsync("UpdateHand", GM.PlayerCards[connectionId]);
+            await Clients.Client(connectionId).SendAsync("UpdateHand", GM.Games["GAME_CODE"].PlayerCards[connectionId]);
         }
 
         public async void UpdateChat()
@@ -53,10 +53,10 @@ namespace Capstone
 
         public async void UpdatePlayerList()
         {
-            if(GM.Players.Count > 0)
-                TableStatus(GM.Players[0].Name + "'s Turn");
+            if(GM.Games["GAME_CODE"].Players.Count > 0)
+                TableStatus(GM.Games["GAME_CODE"].Players[0].Name + "'s Turn");
 
-            await Clients.All.SendAsync("UpdatePlayerList", GM.Players);
+            await Clients.All.SendAsync("UpdatePlayerList", GM.Games["GAME_CODE"].Players);
         }
 
         //------------- Status Text Methods --------------
@@ -105,13 +105,13 @@ namespace Capstone
                 PlayerId = playerID
             });
 
-            GM.AddPlayer(playerID, Context.ConnectionId, name);
+            GM.Games["GAME_CODE"].AddPlayer(playerID, Context.ConnectionId, name);
             await Clients.Caller.SendAsync("JoinGame", playerID);
         }
 
         public void DrawCard()
         {
-            if (GM.DrawCard(Context.ConnectionId))
+            if (GM.Games["GAME_CODE"].DrawCard(Context.ConnectionId))
             {
                 TableSubStatus(Users[Context.ConnectionId].Username + " Drew a Card");
                 UpdatePlayerList();
@@ -121,9 +121,9 @@ namespace Capstone
 
         public void PlayCard(int cardID)
         {
-            Card pCard = GM.PlayerCards[Context.ConnectionId][cardID];
+            Card pCard = GM.Games["GAME_CODE"].PlayerCards[Context.ConnectionId][cardID];
 
-            if (GM.PlayCard(Context.ConnectionId, cardID))
+            if (GM.Games["GAME_CODE"].PlayCard(Context.ConnectionId, cardID))
             {
                 switch (pCard.Number)
                 {
@@ -134,7 +134,7 @@ namespace Capstone
                         break;
 
                     case 10: //----- Pick Up 2 -----//
-                        UpdateOtherHand(GM.Players.First().ConnectionId);
+                        UpdateOtherHand(GM.Games["GAME_CODE"].Players.First().ConnectionId);
                         break;
                 }
 
