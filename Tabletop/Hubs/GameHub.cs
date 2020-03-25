@@ -8,9 +8,7 @@ namespace Tabletop
 {
     public class GameHub : Hub
     {
-        readonly GameManager GM = GameManager.Instance;
-        readonly string[] COLORS = new string[] { "Blue", "Red", "Green", "Yellow" };
-
+        protected readonly GameManager GM = GameManager.Instance;
         public static ConcurrentDictionary<string, User> Users = new ConcurrentDictionary<string, User>();
 
         public string GameCode()
@@ -34,39 +32,17 @@ namespace Tabletop
         public override Task OnDisconnectedAsync(Exception exception)
         {
             //GM.Games[GameCode()].RemovePlayer(Context.ConnectionId);
-            UpdatePlayerList();
+            //UpdatePlayerList();
             return base.OnDisconnectedAsync(exception);
         }
 
         //---------------- Update Methods ------------------
 
-        public async void UpdateTable()
-        {
-            //await Clients.All.SendAsync("UpdateTable", GM.Games[GameCode()].Table);
-            await Clients.Group(GameCode()).SendAsync("UpdateTable", GM.Games[GameCode()].Table);
-        }
 
-        public async void UpdateHand()
-        {
-            await Clients.Group(GameCode()).SendAsync("UpdateHand", GM.Games[GameCode()].PlayerCards[UserId()]);
-        }
-
-        //public async void UpdateOtherHand(string connectionId)
-        //{
-        //    await Clients.Client(connectionId).SendAsync("UpdateHand", GM.Games[GameCode()].PlayerCards[connectionId]);
-        //}
 
         public async void UpdateChat()
         {
             await Clients.Group(GameCode()).SendAsync("UpdateChat", GM.ChatLogs[GameCode()]);
-        }
-
-        public async void UpdatePlayerList()
-        {
-            if (GM.Games[GameCode()].Players.Count > 0)
-                TableStatus(GM.Games[GameCode()].Players[0].Name + "'s Turn");
-
-            await Clients.Group(GameCode()).SendAsync("UpdatePlayerList", GM.Games[GameCode()].Players);
         }
 
         //------------- Status Text Methods --------------
@@ -86,12 +62,12 @@ namespace Tabletop
             await Clients.Caller.SendAsync("HandStatus", text);
         }
 
+
+
         //---------------- Call Methods ------------------
 
         public async void JoinGame(string code, string name, string clientId)
         {
-            int playerID = Users.Count + 1;
-
             name = name.Trim();
 
             if (name == "")
@@ -118,50 +94,14 @@ namespace Tabletop
                     ConnectionId = Context.ConnectionId,
                     Username = name,
                     GameCode = code,
-                    PlayerId = playerID,
                     ClientId = clientId
                 });
 
-                GM.Games[GameCode()].AddPlayer(playerID, UserId(), name);
+                GM.Games[GameCode()].AddPlayer(UserId(), name);
             }
 
             //Chat(clientId);
             await Groups.AddToGroupAsync(Context.ConnectionId, code);
-        }
-
-        public void DrawCard()
-        {
-            if (GM.Games[GameCode()].DrawCard(UserId()))
-            {
-                TableSubStatus(Users[Context.ConnectionId].Username + " Drew a Card");
-                UpdatePlayerList();
-                UpdateHand();
-            }
-        }
-
-        public void PlayCard(int cardID)
-        {
-            Card pCard = GM.Games[GameCode()].PlayerCards[UserId()][cardID];
-
-            if (GM.Games[GameCode()].PlayCard(UserId(), cardID))
-            {
-                switch (pCard.Number)
-                {
-                    default:
-                        TableSubStatus(
-                            Users[Context.ConnectionId].Username + " Played "
-                            + COLORS[pCard.Color] + " " + pCard.Number);
-                        break;
-
-                        //case 10: //----- Pick Up 2 -----//
-                        //UpdateOtherHand(GM.Games[GameCode()].Players.First().ConnectionId);
-                        //break;
-                }
-
-                UpdatePlayerList();
-                UpdateTable();
-                UpdateHand();
-            }
         }
 
         public void Chat(string input)
@@ -174,7 +114,6 @@ namespace Tabletop
     public class User
     {
         public string ConnectionId { get; set; }
-        public int PlayerId { get; set; }
         public string ClientId { get; set; }
         public string GameCode { get; set; }
         public string Username { get; set; }

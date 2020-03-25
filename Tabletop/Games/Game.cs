@@ -31,7 +31,7 @@ namespace Tabletop
             Table.TopCard = DrawCard();
         }
 
-        public void AddPlayer(int playerId, string connectionId, string name)
+        public void AddPlayer(string connectionId, string name)
         {
             PlayerCards[connectionId] = new List<Card>();
 
@@ -42,7 +42,6 @@ namespace Tabletop
 
             Players.Add(new Player
             {
-                PlayerId = playerId,
                 ConnectionId = connectionId,
                 Name = name,
                 CardCount = PlayerCards[connectionId].Count
@@ -169,7 +168,6 @@ namespace Tabletop
 
     public class Player
     {
-        public int PlayerId { get; set; }
         public string ConnectionId { get; set; }
         public string Name { get; set; }
         public int CardCount { get; set; }

@@ -34,8 +34,6 @@ export class Home extends Component
                     this.setState({ gameState: 'Home' });
                 else
                     this.setState({ gameState: 'Game', gameCode: code });
-
-                console.log("TEST: " + code);
             });
     }
 
