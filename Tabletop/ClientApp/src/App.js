@@ -16,12 +16,20 @@ export default class App extends Component
     {
         return (
             <Layout>
-                <Route exact path='/' component={Home} />
+                <Route
+                    exact
+                    path='/'
+                    component={Home}
+                />
                 <Route exact path='/game' component={JoinGame} />
                 <Route exact path='/createGame' component={CreateGame} />
                 <Route path='/debug' component={DebugLog} />
                 <Route exact path='/createAccount' component={CreateAccount} />
-                <Route exact path='/login' component={Login} />
+                <Route
+                    exact
+                    path='/login'
+                    component={Login}
+                    />
             </Layout>
         );
     }

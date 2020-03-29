@@ -39,27 +39,31 @@ export class ChatBox extends Component
 
         for (let i = this.state.chatBox.length - 1; i >= 0; i--)
         {
-            chatlog.push(
-                <div key={i} className="chatMessage">
-                    <h3>{this.state.chatBox[i].author}</h3>
-                    <p>{this.state.chatBox[i].value}</p>
-                </div>);
+            if (this.state.chatBox[i].value.trim() !== "") {
+                chatlog.push(
+                    <div key={i} className="chatMessage">
+                        <h3>{this.state.chatBox[i].author}</h3>
+                        <p>{this.state.chatBox[i].value}</p>
+                    </div>);
+            }
         }
 
         return (
             <form id="chat-box" action="javascript:void(0)">
                 <br />
+                <div className="ayaya">
+                    <div className="chatBox">
+                        {chatlog}
+                    </div>
+                </div>
+                <br /><br />
                 <input id="chatInput"
                     type="text"
                     value={this.state.input}
                     onChange={e => this.setState({ input: e.target.value })}
                 />
                 <br /><br />
-                <button type="submit" onClick={this.sendMessage}>Send</button>
-                <br /><br />
-                <div className="chatBox">
-                    {chatlog}
-                </div>
+                <button className="chatSubmit" type="submit" onClick={this.sendMessage}><img id="send" src={require('../pictures/send.png')} /></button>
             </form>
         );
     }

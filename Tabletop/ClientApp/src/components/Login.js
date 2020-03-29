@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import firebase from './Firebase.js';
 import './Account.css';
 
 export class Login extends Component {
@@ -13,6 +14,7 @@ export class Login extends Component {
 		}
 
 		this.toggleShow = this.toggleShow.bind(this);
+		this.submit = this.submit.bind(this);
 	}
 
 	setValue(e) {
@@ -49,17 +51,31 @@ export class Login extends Component {
 			this.setState({ errorMessage: 'Please fill in all the fields' });
 		}
 		this.login();
+		if (!this.login()) {
+			this.setState({ logged: true });
+		}
+		console.log(this.state.logged);
 	}
 
 	login() {
-		console.log(this.state.username);
-		console.log(this.state.email);
-		console.log(this.state.password);
+		let cTrue = 0;
 
-		fetch("main/AddAccount?username=" + this.state.username
-			+ "&password=" + this.state.password
-			+ "&email=" + this.state.email);
-	}
+		const account = firebase.database().ref('account');
+		account.on('value', (snapshot) => {
+			let acc = snapshot.val();
+			for (let a in acc) {
+				if (acc[a].username === this.state.username && acc[a].password === this.state.password) {
+					cTrue++;
+				}
+			}
+		});
+		console.log(cTrue);
+
+		if (cTrue > 0)
+			return true;
+		else
+			return false;
+	};
 
 	render() {
 		return (
