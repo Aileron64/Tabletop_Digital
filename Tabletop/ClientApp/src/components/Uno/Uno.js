@@ -87,6 +87,12 @@ export class Uno extends Component
         }
     }
 
+    leaveGame()
+    {
+        this.state.connection.invoke('LeaveGame');
+        window.location.replace('/');
+    }
+
     render()
     {
         if (this.state.loading)
@@ -104,6 +110,8 @@ export class Uno extends Component
                 <div className="right">
                     <h2>Room Code: {this.state.code}</h2>
                     <PlayerList connection={this.state.connection} playerID={this.state.playerID} />
+                    <br /><br />
+                    <button id="leave-game" onClick={(e) => this.leaveGame(e)}>Leave Game</button>                
                     <ChatBox connection={this.state.connection} />
                 </div>
             </div>

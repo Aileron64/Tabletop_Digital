@@ -68,5 +68,10 @@ namespace Tabletop
             }
         }
 
+        public void LeaveGame()
+        {
+            GM.Games[GameCode()].RemovePlayer(UserId());
+            UpdatePlayerList();
+        }
     }
 }

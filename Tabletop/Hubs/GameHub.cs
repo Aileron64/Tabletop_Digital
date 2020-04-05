@@ -38,8 +38,6 @@ namespace Tabletop
 
         //---------------- Update Methods ------------------
 
-
-
         public async void UpdateChat()
         {
             await Clients.Group(GameCode()).SendAsync("UpdateChat", GM.ChatLogs[GameCode()]);
@@ -61,8 +59,6 @@ namespace Tabletop
         {
             await Clients.Caller.SendAsync("HandStatus", text);
         }
-
-
 
         //---------------- Call Methods ------------------
 

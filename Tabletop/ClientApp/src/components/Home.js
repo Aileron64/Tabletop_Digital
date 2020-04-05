@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavMenu } from './NavMenu';
+import { Container } from 'reactstrap';
 import { JoinGame } from './JoinGame';
 import { CreateGame } from './CreateGame';
 import { Uno } from './Uno/Uno'
@@ -49,25 +51,37 @@ export class Home extends Component
 
     render()
     {
+        var pageContent;
+
         switch (this.state.gameState)
         {
             default:
-                return (
+                pageContent =
                     <div id="home">
                         <h1>Home</h1>
                         <a className="home-button" onClick={(e) => this.createGame(e)}>Create Game</a>
                         <a className="home-button" onClick={(e) => this.joinGame(e)}>Join Game</a>
-                    </div>
-                );
+                    </div>;
+                break;
 
             case 'JoinGame':
-                return (<div><JoinGame /></div>);
+                pageContent = <div><JoinGame /></div>;
+                break;
 
             case 'CreateGame':
-                return (<div><CreateGame /></div>);
+                pageContent = <div><CreateGame /></div>;
+                break;
 
             case 'Game':
-                return (<div><Uno code={this.state.gameCode} playerName={this.state.gameCode} /></div>);
+                pageContent = <div><Uno code={this.state.gameCode} playerName={this.state.gameCode} /></div>;
+                break;
         }
+
+        return (
+            <div>
+                <NavMenu />
+                <Container> {pageContent} </Container>
+            </div>
+        );
     }
 }
