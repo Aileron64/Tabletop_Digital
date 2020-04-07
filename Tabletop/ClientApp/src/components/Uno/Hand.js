@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { ColorSelect } from './ColorSelect';
 
 var cards;
 
@@ -11,6 +12,7 @@ export class Hand extends Component
         {
             connection: this.props.connection,
             cards: [],
+            colorSelect: false,
             loading: true
         };
 
@@ -34,6 +36,8 @@ export class Hand extends Component
     drawCard()
     {
         this.state.connection.invoke("DrawCard");
+
+        //this.setState({ colorSelect: true });
     }
 
     cardClick(i)
@@ -54,6 +58,7 @@ export class Hand extends Component
     render()
     {
         let cardlist = [];
+        let colorSelect;
 
         if (!this.state.loading)
         {
@@ -68,6 +73,9 @@ export class Hand extends Component
                         card: cards[color][number]
                     }));
             }
+
+            if (this.state.colorSelect)
+                colorSelect = <ColorSelect />;
         }
 
         return (
@@ -75,6 +83,7 @@ export class Hand extends Component
                 <button id="draw-card" onClick={(e) => this.drawCard(e)}>Draw Card</button>
                 <br />
                 {cardlist}
+                {colorSelect}
             </div>
         );
     }

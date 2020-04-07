@@ -20,7 +20,7 @@ namespace Tabletop
             {
                 Deck.Add(new Card { Number = 0, Color = i });
 
-                for (int j = 1; j < 13; j++)
+                for (int j = 1; j < 14; j++)
                 {
                     Deck.Add(new Card { Number = j, Color = i });
                     Deck.Add(new Card { Number = j, Color = i });
@@ -100,7 +100,7 @@ namespace Tabletop
         {
             return new Card
             {
-                Number = random.Next(0, 13),
+                Number = random.Next(0, 14),
                 Color = random.Next(0, 4)
             };
         }

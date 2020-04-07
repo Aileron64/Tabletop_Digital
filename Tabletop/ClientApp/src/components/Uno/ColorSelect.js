@@ -1,38 +1,28 @@
 ﻿import React, { Component } from 'react';
+import './ColorSelect.css';
 
 var cards;
 
-export class Hand extends Component
+export class ColorSelect extends Component
 {
-    cardClick(i)
+    blueClick()
     {
-        //console.log("cardClick" + i);
-        this.state.connection.invoke("PlayCard", i);
+       
+        
     }
 
     render()
     {
-        let cardlist = [];
 
-        if (!this.state.loading)
-        {
-            for (var i = 0; i < this.state.cards.length; i++)
-            {
-                var number = this.state.cards[i].number;
-                var color = this.state.cards[i].color;
-
-                cardlist.push(this.renderCard(
-                    {
-                        key: i,
-                        card: cards[color][number]
-                    }));
-            }
-        }
 
         return (
-            <div>
-                <button id="draw-card" onClick={(e) => this.drawCard(e)}>Draw Card</button>
-                <br />
+            <div id="color-select">
+                <div className="pop-up">
+                    <button id="blue-button" onClick={(e) => this.blueClick(e)}>Blue</button>
+                    <button id="red-button" onClick={(e) => this.blueClick(e)}>Red</button>
+                    <button id="yellow-button" onClick={(e) => this.blueClick(e)}>Yellow</button>
+                    <button id="green-button" onClick={(e) => this.blueClick(e)}>Green</button>
+                </div>
                 
             </div>
         );

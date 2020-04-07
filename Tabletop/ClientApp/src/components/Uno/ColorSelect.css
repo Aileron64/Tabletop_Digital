@@ -1,0 +1,54 @@
+﻿
+#color-select
+{
+	z-index: 1;
+	left: 0;
+	top: 0;
+	position: fixed;
+	background-color: #0000009f;
+	height: 100%;
+	width: 100%;
+}
+
+.pop-up
+{
+	margin: 16em auto;
+	width: 15em;
+}
+
+#blue-button, #red-button, #yellow-button, #green-button
+{
+	width: 80%;
+	margin: 0.3em;
+	padding: 0.4em;
+	box-shadow: 0px 0px 2px black;
+	border: none;
+	color: white;
+	text-shadow: 0px 0px 4px black;
+}
+
+	#blue-button:hover, #red-button:hover, #yellow-button:hover, #green-button:hover
+	{
+		box-shadow: 0px 0px 8px black;
+		text-shadow: 0px 0px 8px black;
+	}
+
+	#blue-button
+	{
+		background: blue;
+	}
+
+	#red-button
+	{
+		background: red;
+	}
+
+	#yellow-button
+	{
+		background: yellow;
+	}
+
+	#green-button
+	{
+		background: green;
+	}

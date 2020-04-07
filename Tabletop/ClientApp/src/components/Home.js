@@ -3,7 +3,8 @@ import { NavMenu } from './NavMenu';
 import { Container } from 'reactstrap';
 import { JoinGame } from './JoinGame';
 import { CreateGame } from './CreateGame';
-import { Uno } from './Uno/Uno'
+import { Uno } from './Uno/Uno';
+
 
 export class Home extends Component
 {

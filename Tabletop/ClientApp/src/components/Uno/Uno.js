@@ -84,6 +84,11 @@ export class Uno extends Component
                         <span className="card-icon">{n - 10}</span>
                     </div>;
             }
+
+            cards[i][13] =
+                <div className="card" id="spCard">
+                    <span className="card-number">W</span>
+                </div>;
         }
     }
 
