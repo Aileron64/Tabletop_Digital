@@ -105,6 +105,29 @@ namespace Tabletop
             };
         }
 
+        public bool PlayWildCard(string playerID, int cardID, int color)
+        {
+            if (CheckTurn(playerID))
+            {
+                Player cPlayer = Players.Single(p => p.ConnectionId == playerID);
+
+                PlayerCards[playerID][cardID].Color = color;
+                Players.Add(cPlayer);
+                Players.Remove(cPlayer);
+
+                //Update card count
+                cPlayer.CardCount--;
+
+                //Played card becomes top card
+                Table.TopCard = PlayerCards[playerID][cardID];
+                PlayerCards[playerID].RemoveAt(cardID);
+
+                return true;
+            }
+            else
+                return false;
+        }
+
         public bool PlayCard(string playerID, int cardID)
         {
             if (CheckTurn(playerID))

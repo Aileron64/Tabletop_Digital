@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { ColorSelect } from './ColorSelect';
+import './ColorSelect.css';
 
 var cards;
+var wildCardIndex;
 
 export class Hand extends Component
 {
@@ -36,14 +37,23 @@ export class Hand extends Component
     drawCard()
     {
         this.state.connection.invoke("DrawCard");
+    }
 
-        //this.setState({ colorSelect: true });
+    colorSelect(color)
+    {
+        this.state.connection.invoke("PlayWildCard", color, wildCardIndex);
+        this.setState({ colorSelect: false });
     }
 
     cardClick(i)
     {
-        //console.log("cardClick" + i);
-        this.state.connection.invoke("PlayCard", i);
+        if (this.state.cards[i].number == 13)
+        {
+            wildCardIndex = i;
+            this.setState({ colorSelect: true });
+        }
+        else
+            this.state.connection.invoke("PlayCard", i);
     }
 
     renderCard(props)
@@ -75,7 +85,15 @@ export class Hand extends Component
             }
 
             if (this.state.colorSelect)
-                colorSelect = <ColorSelect />;
+                colorSelect =
+                    <div id="color-select">
+                        <div className="pop-up">
+                        <button id="blue-button" onClick={(e) => this.colorSelect(0, e)}>Blue</button>
+                        <button id="red-button" onClick={(e) => this.colorSelect(1, e)}>Red</button>         
+                        <button id="green-button" onClick={(e) => this.colorSelect(2, e)}>Green</button>
+                        <button id="yellow-button" onClick={(e) => this.colorSelect(3, e)}>Yellow</button>
+                        </div>
+                    </div>;
         }
 
         return (

@@ -64,6 +64,15 @@ namespace Tabletop
             }
         }
 
+        public void PlayWildCard(int color, int cardID)
+        {
+            GM.Games[GameCode()].PlayWildCard(UserId(), cardID, color);
+
+            UpdatePlayerList();
+            UpdateTable();
+            UpdateHand();
+        }
+
         public void LeaveGame()
         {
             GM.Games[GameCode()].RemovePlayer(UserId());

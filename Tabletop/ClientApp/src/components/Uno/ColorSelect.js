@@ -1,15 +1,11 @@
 ﻿import React, { Component } from 'react';
 import './ColorSelect.css';
 
-var cards;
+
 
 export class ColorSelect extends Component
 {
-    blueClick()
-    {
-       
-        
-    }
+
 
     render()
     {
@@ -23,7 +19,6 @@ export class ColorSelect extends Component
                     <button id="yellow-button" onClick={(e) => this.blueClick(e)}>Yellow</button>
                     <button id="green-button" onClick={(e) => this.blueClick(e)}>Green</button>
                 </div>
-                
             </div>
         );
     }
