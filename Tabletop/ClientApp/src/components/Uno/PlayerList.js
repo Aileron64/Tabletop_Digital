@@ -38,8 +38,8 @@ export class PlayerList extends Component
         {
             let name = this.state.players[i].name;
 
-            if (this.state.players[i].playerId == playerID)
-                name += " (YOU)";
+            //if (this.state.players[i].playerId == playerID)
+            //    name += " (YOU)";
 
             players.push(
                 <tr key={i}>

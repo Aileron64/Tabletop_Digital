@@ -53,7 +53,10 @@ namespace Tabletop.Controllers
         [HttpGet("JoinGame")]
         public bool JoinGame(string roomCode)
         {
-            return GM.Games.ContainsKey(roomCode);
+            if (roomCode != null)
+                return GM.Games.ContainsKey(roomCode);
+            else
+                return false;
         }
 
         [HttpGet("CheckGames")]

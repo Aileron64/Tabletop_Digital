@@ -21,7 +21,6 @@ namespace Tabletop
             return Users[Context.ConnectionId].ClientId;
         }
 
-
         //------------ Connection Overrides --------------
 
         public override Task OnConnectedAsync()
