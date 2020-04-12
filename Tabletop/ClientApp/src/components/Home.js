@@ -80,8 +80,7 @@ export class Home extends Component
 
         return (
             <div>
-                <NavMenu />
-                <Container> {pageContent} </Container>
+                {pageContent}
             </div>
         );
     }

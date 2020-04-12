@@ -72,7 +72,6 @@ namespace Tabletop
                     pattern: "{controller}/{action=Index}/{id?}");
 
                 endpoints.MapHub<GameHub>("/gameHub");
-                endpoints.MapHub<UnoHub>("/unoHub");
             });
 
             app.UseSpa(spa =>

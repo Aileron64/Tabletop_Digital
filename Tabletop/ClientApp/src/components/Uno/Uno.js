@@ -46,7 +46,7 @@ export class Uno extends Component
             {
                 this.setState({ clientID });
 
-                this.setState({ connection: new signalR.HubConnectionBuilder().withUrl("/unoHub").build() }, () =>
+                this.setState({ connection: new signalR.HubConnectionBuilder().withUrl("/gameHub").build() }, () =>
                 {
                     this.state.connection.start().then(() =>
                     {

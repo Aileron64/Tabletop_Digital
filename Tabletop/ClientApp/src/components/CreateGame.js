@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Game } from './Game'
 import { Uno } from './Uno/Uno'
 
 export class CreateGame extends Component
