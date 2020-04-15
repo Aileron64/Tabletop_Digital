@@ -33,6 +33,8 @@ export class Home extends Component
             .then(response => response.json())
             .then(code =>
             {
+                console.log("FOUND GAME?: " + code);
+
                 if (code == "0")
                     this.setState({ gameState: 'Home' });
                 else

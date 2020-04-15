@@ -46,7 +46,14 @@ namespace Tabletop
 
         public async void UpdateHand()
         {
-            await Clients.Group(GameCode()).SendAsync("UpdateHand", GM.Games[GameCode()].PlayerCards[UserId()]);
+            Debug.Log(Users[Context.ConnectionId].Username + ": UPDATE HAND");
+            await Clients.Caller.SendAsync("UpdateHand", GM.Games[GameCode()].PlayerCards[UserId()]);
+        }
+
+        public async void UpdateOtherHand(string userId)
+        {
+            await Clients.Client(Users.FirstOrDefault(u => u.Value.ClientId == userId).Key)
+                .SendAsync("UpdateHand", GM.Games[GameCode()].PlayerCards[userId]);
         }
 
         public async void UpdatePlayerList()
@@ -143,9 +150,9 @@ namespace Tabletop
                             + COLORS[pCard.Color] + " " + pCard.Number);
                         break;
 
-                        //case 10: //----- Pick Up 2 -----//
-                        //UpdateOtherHand(GM.Games[GameCode()].Players.First().ConnectionId);
-                        //break;
+                    case 10: //----- Pick Up 2 -----//
+                        UpdateOtherHand(GM.Games[GameCode()].Players.First().ConnectionId);
+                        break;
                 }
 
                 UpdatePlayerList();
@@ -165,8 +172,16 @@ namespace Tabletop
 
         public void LeaveGame()
         {
+            Debug.Log("LEAVE GAME");
             GM.Games[GameCode()].RemovePlayer(UserId());
             UpdatePlayerList();
+
+            //Users.TryRemove(Context.ConnectionId, out _);
+
+            foreach (var user in Users.Where(u => u.Value.ClientId == UserId()))
+            {
+                Users.TryRemove(user.Key, out _);
+            } 
         }
 
         public void Chat(string input)
