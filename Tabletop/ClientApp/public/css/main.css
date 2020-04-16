@@ -1,0 +1,307 @@
+﻿@import "card.css";
+
+@font-face {
+	font-family: "Icon";
+	src: url('../icons.woff') format('woff'), url('../icons.woff2') format('woff2'), url('../icons.tts') format('tts');
+}
+
+#draw-card {
+	margin: 0 0 2em 2em;
+}
+
+h1 {
+	margin: 1em;
+}
+
+h3 {
+	margin: 1em;
+}
+
+.left {
+	float: left;
+	width: 56%;
+}
+
+.right {
+	float: right;
+	width: 40%;
+}
+
+@media (max-width : 725px) {
+	.left, .right {
+		width: 100%;
+		clear: both;
+	}
+}
+
+.ayaya {
+	border: solid;
+	border-color: black;
+	border-width: 1px;
+	border-radius: 10px;
+	min-height: 200px;
+	width: 85%;
+	max-height: 350px;
+	position: absolute;
+	top: 75%;
+	bottom: 15%;
+	left: 7.5%;
+	right: 7.5%;
+	padding-bottom: 30px;
+}
+
+.chatBox {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column-reverse;
+	height: 95%;
+	width: 99%;
+	margin: 0.5% 0.5%;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	border: 1px solid #000;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: gray;
+	border: 1px solid #000;
+}
+
+#chatInput {
+	width: 82%;
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 25px;
+	position: absolute;
+	top: 92.7%;
+	bottom: 12.5%;
+	left: 8%;
+	right: 8%;
+	padding-left: 10px;
+}
+
+.chatSubmit {
+	position: absolute;
+	top: 92.1%;
+	bottom: 11.5%;
+	height: 25px;
+	left: 89.75%;
+	right: 8.25%;
+	border-color: transparent;
+	border-radius: 10px;
+	background-color: transparent;
+}
+
+	.chatSubmit:focus, .chatSubmit:active {
+		outline: none;
+	}
+
+#send {
+	height: 25px;
+	width: 25px;
+}
+
+.chatMessage {
+	box-shadow: 0px 0px 2px;
+	margin: 0.3em 0.2em;
+	border: solid 1px;
+	border-radius: 10px;
+	min-width: 532px;
+	max-width: 532px;
+	word-wrap: break-word;
+}
+
+	.chatMessage h3 {
+		font-size: 12px;
+		padding: 0.5em;
+		margin: 0px;
+		color: steelblue;
+	}
+
+	.chatMessage p {
+		padding-left: 0.7em;
+	}
+
+#debug-log {
+	box-shadow: 0px 0px 2px;
+	padding: 0.4em;
+	margin: 3em 0;
+}
+
+	#debug-log p {
+		margin: 3px;
+	}
+
+.debug-message {
+	margin-left: 15px;
+}
+
+#player-list {
+	font-size: 15px;
+	margin-top: 3em;
+	width: 60%;
+}
+
+	#player-list th:last-child, td:last-child {
+		text-align: right;
+	}
+
+	#player-list tr:first-child {
+		width: 85%;
+	}
+
+#name-entry {
+	box-shadow: 0px 0px 4px;
+	width: 50%;
+	padding: 2em;
+	margin: 4em auto;
+	text-align: center;
+}
+
+	#name-entry input {
+		width: 100%;
+	}
+
+	#name-entry button {
+		margin-top: 1em;
+		width: 40%;
+	}
+
+#table-status {
+	min-height: 5em;
+}
+
+	#table-status p {
+		text-indent: 2em;
+	}
+
+footer {
+	clear: both;
+	padding: 10em 0 15px 0;
+}
+
+	footer p {
+		text-align: center;
+	}
+
+#home {
+	margin: 5em auto;
+	width: 30em;
+	text-align: center;
+}
+
+	#home h1 {
+		margin-bottom: 15px;
+	}
+
+.home-button {
+	box-shadow: 0px 0px 2px;
+	padding: 10px 18px;
+	width: 40%;
+	margin: 1em 1em;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+	.home-button:hover {
+		box-shadow: 0px 0px 6px;
+		color: black;
+		text-decoration: none;
+	}
+
+	.home-button:active {
+		box-shadow: 0px 0px 1px;
+	}
+
+
+.darkModeButton {
+	background-color: white;
+	color: black;
+	width: 125px;
+	border: 0px;
+	border-radius: 5px;
+}
+
+	.darkModeButton:active, .darkModeButton:focus {
+		outline: none;
+	}
+
+.whiteModeButton {
+	background-color: black;
+	color: white;
+	width: 125px;
+	border: 0px;
+	border-radius: 5px;
+}
+
+	.whiteModeButton:active, .whiteModeButton:focus {
+		outline: none;
+	}
+
+#darkMode {
+	color: white;
+}
+
+#whiteMode {
+	color: black;
+}
+
+.whiteMode {
+	background-color: white;
+	color: black;
+}
+
+.darkMode {
+	background-color: rgb(26, 26, 27);
+	color: white;
+}
+
+.roomCode {
+	position: absolute;
+	top: 10%;
+	right: 18.25%;
+}
+
+#player-list {
+	/*border: 1px solid black;*/
+	position: absolute;
+	max-width: 300px;
+	max-height: 250px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	top: 12.5%;
+	right: 17.5%;
+}
+
+#leave-game {
+	position: absolute;
+	top: 70.5%;
+	left: 87.25%;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+#table-status {
+	position: absolute;
+	top: 9.5%;
+	left: 15%;
+}
+
+#cardPlayed {
+	position: absolute;
+	top: 25.5%;
+	left: 30%;
+}

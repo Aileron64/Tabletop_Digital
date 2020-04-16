@@ -1,0 +1,89 @@
+﻿.card {
+	width: 85px;
+	height: 110px;
+	border: solid;
+	border-color: black;
+	border-radius: 2em;
+	overflow: hidden;
+	margin-bottom: 1em;
+	box-shadow: 0px 0px 2px;
+}
+
+.hand {
+	border: none;
+	background: none;
+}
+
+.hand:active, .hand:focus {
+	outline: none;
+}
+
+.hand .card:hover {
+	box-shadow: 0px 0px 12px;
+}
+
+.cardLimit {
+
+}
+
+.displayCards {
+	/*border: 1px solid black;*/
+	min-height: 127.5px;
+	max-height: 127.5px;
+	max-width: 1620px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	position: absolute;
+	top: 55%;
+	left: 12.5%;
+	right: 12.5%;
+}
+
+.card-number, .card-icon {
+	margin: auto;
+	color: white;
+	font-size: 3.5em;
+	text-shadow: 0px 0px 4px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#draw-card {
+	position: absolute;
+	top: 50.5%;
+	left: 80.25%;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+	#draw-card:active, #draw-card:focus {
+		outline: none;
+	}
+
+.card-icon {
+	padding: 0px 5px 0px 10px;
+	font-size: 2.25em;
+	font-family: 'Icon';
+}
+
+#spCard
+{
+	/*background-image: linear-gradient(-35deg, #000099, #ffd800),
+		linear-gradient(100deg, #4cff00, #ff0000);*/
+	background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+
+#red {
+	background-image: linear-gradient(-52.5deg, RGBA(34,34,34,0.95), RGBA(255,0,0,0.55), RGBA(34,34,34,0.95));
+}
+
+#blue {
+	background-image: linear-gradient(-52.5deg, RGBA(34,34,34,0.95), RGBA(0,0,255,0.55), RGBA(34,34,34,0.95));
+}
+
+#green {
+	background-image: linear-gradient(-52.5deg, RGBA(34,34,34,0.95), RGBA(0,128,0,0.55), RGBA(34,34,34,0.95));
+}
+
+#yellow {
+	background-image: linear-gradient(-52.5deg, RGBA(34,34,34,0.95), RGBA(204,153,0,0.75), RGBA(34,34,34,0.95));
+}

@@ -1,0 +1,89 @@
+﻿html {
+	font-size: 14px;
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.accTitle {
+	text-align: center;
+	margin-top: 1.5%;
+	text-decoration: underline;
+}
+
+.accBody {
+	border: solid;
+	border-width: 1px;
+	border-radius: 15px;
+	margin-top: 10%;
+}
+
+.formBody {
+	border: dotted;
+	border-width: 1px;
+	margin: 5% 10%;
+	padding-bottom: 4.5%;
+}
+
+.accLabel {
+	margin: 5% 5% 0% 27.5%;
+}
+
+.accInputU {
+	margin-left: 15px;
+	width: 200px;
+}
+
+.accInputP {
+	margin-left: 19px;
+	width: 200px;
+	padding-right: 19.5px;
+}
+
+.accInputE {
+	margin-left: 47px;
+	width: 200px;
+}
+
+.accSubmit {
+	position: absolute;
+	left: 35%;
+	width: 100px;
+	border: 0px solid;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px;
+}
+
+.accReset {
+	position: absolute;
+	right: 35%;
+	width: 100px;
+	border: 0px solid;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px;
+}
+
+.errMessage {
+	margin-top: 1.5%;
+	color: red;
+	font-style: italic;
+	text-align: center;
+}
+
+#toggleVisibility {
+	border-color: transparent;
+	background-color: transparent;
+	margin-left: -30px;
+}
+
+	#toggleVisibility:focus, #toggleVisibility:active {
+		outline: 0;
+	}
+
+#smile {
+	height: 19px;
+	width: 19px;
+}
